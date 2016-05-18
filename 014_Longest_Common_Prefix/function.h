@@ -1,0 +1,1 @@
+char* longestCommonPrefix(char** , int);
