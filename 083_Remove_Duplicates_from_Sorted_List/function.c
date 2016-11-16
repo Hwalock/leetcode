@@ -9,16 +9,18 @@
  * };
  */
 struct ListNode* deleteDuplicates(struct ListNode* head) {
-	struct ListNode *res = head, *curNode = head, *nxtNode;
+	struct ListNode *res = head, *curNode = head;
 
-	while (curNode) {
-		while ((nxtNode = curNode->next) != NULL && 
-			curNode->val == nxtNode->val)
+	while (curNode && curNode->next) {
+		if (curNode->val == curNode->next->val)
 		{
-			curNode->next = nxtNode->next;
-			free(nxtNode);
+			struct ListNode *tmp = curNode->next;
+			curNode->next = curNode->next->next;
+			free(tmp);
 		}
-		curNode = nxtNode;
+		else {
+			curNode = curNode->next;
+		}
 	}
 	return res;
 }
